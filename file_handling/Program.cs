@@ -20,20 +20,29 @@ namespace file_handling
             //stm.Write("hi this is create file");
 
 
-            using (FileStream stm = new FileStream("D://ali.txt", FileMode.Append,FileAccess.Write))
+            using (FileStream stm = new FileStream("D://ali.txt", FileMode.OpenOrCreate))
             {
-                using (StreamWriter wrt =new StreamWriter(stm))
-                {
-                    int[] a = { 10, 15, 20, 25, 30, 35 };
-                    foreach (var item in a)
-                    {
-                        wrt.WriteLine(item);
-                        
-                    }
-                    
+                //using (StreamWriter wrt =new StreamWriter(stm))
+                //{
+                //    int[] a = { 10, 15, 20, 25, 30, 35 };
+                //    foreach (var item in a)
+                //    {
+                //        wrt.WriteLine(item);
 
-                    Console.WriteLine("Array File  created Successfully..");  
+                //    }
+
+                //    Console.WriteLine("Array File  created Successfully..");  
+                //}
+                string line = "";
+                using (StreamReader dr=new StreamReader(stm))
+                {
+                    while ((line = dr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                    }
+                    dr.ReadLine();
                 }
+                Console.WriteLine("this file reading");
                
             }
             ;
